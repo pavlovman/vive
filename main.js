@@ -100,6 +100,83 @@ function setupStudyPage() {
   studyButton.addEventListener("click", drawSubject);
 }
 
+function setupFoodPage() {
+  const foodName = document.getElementById("food-name");
+  const foodReason = document.getElementById("food-reason");
+  const foodButton = document.getElementById("food-button");
+  const filters = document.querySelectorAll(".food-filter");
+
+  if (!foodName || !foodReason || !foodButton || filters.length === 0) return;
+
+  const menus = [
+    { name: "김치찌개", reason: "얼큰한 국물로 입맛을 확 살려줘요.", category: "korean" },
+    { name: "제육볶음", reason: "매콤달콤한 맛으로 만족도가 높아요.", category: "korean" },
+    { name: "비빔밥", reason: "채소와 단백질을 균형 있게 챙길 수 있어요.", category: "korean" },
+    { name: "된장찌개", reason: "구수하고 편안한 맛이라 실패가 적어요.", category: "korean" },
+    { name: "갈비탕", reason: "든든하게 배를 채우기 좋아요.", category: "korean" },
+    { name: "짜장면", reason: "호불호가 적고 빠르게 먹기 좋아요.", category: "chinese" },
+    { name: "짬뽕", reason: "칼칼한 국물로 기분 전환하기 좋습니다.", category: "chinese" },
+    { name: "마라탕", reason: "취향대로 재료를 골라 먹는 재미가 있어요.", category: "chinese" },
+    { name: "볶음밥", reason: "부담 없고 든든하게 먹을 수 있어요.", category: "chinese" },
+    { name: "돈가스", reason: "바삭한 식감으로 만족감이 좋아요.", category: "japanese" },
+    { name: "초밥", reason: "가볍지만 만족스러운 한 끼가 됩니다.", category: "japanese" },
+    { name: "우동", reason: "따뜻하고 부담 없는 식사로 좋아요.", category: "japanese" },
+    { name: "규동", reason: "짭조름한 맛으로 밥이 잘 넘어가요.", category: "japanese" },
+    { name: "텐동", reason: "튀김과 소스 조합이 확실한 보상입니다.", category: "japanese" },
+    { name: "파스타", reason: "분위기 전환이 필요할 때 좋은 선택이에요.", category: "western" },
+    { name: "리조또", reason: "부드럽고 포만감이 오래갑니다.", category: "western" },
+    { name: "햄버거 세트", reason: "간편하고 만족감이 빠르게 와요.", category: "western" },
+    { name: "샌드위치", reason: "가볍게 먹고 오후를 산뜻하게 시작해요.", category: "western" },
+    { name: "포케", reason: "신선하고 산뜻해서 부담이 적어요.", category: "western" }
+  ];
+
+  const lastIndexByCategory = {};
+  let currentCategory = "all";
+
+  function getCurrentMenus() {
+    if (currentCategory === "all") return menus;
+    return menus.filter((menu) => menu.category === currentCategory);
+  }
+
+  function pickMenu() {
+    const pool = getCurrentMenus();
+    if (pool.length === 0) return null;
+
+    if (pool.length === 1) return pool[0];
+
+    const previous = lastIndexByCategory[currentCategory] ?? -1;
+    let next = randomIndex(pool.length);
+    while (next === previous) {
+      next = randomIndex(pool.length);
+    }
+    lastIndexByCategory[currentCategory] = next;
+    return pool[next];
+  }
+
+  function renderMenu() {
+    const picked = pickMenu();
+    if (!picked) {
+      foodName.textContent = "추천 가능한 메뉴가 없어요";
+      foodReason.textContent = "다른 카테고리를 선택해 주세요.";
+      return;
+    }
+    foodName.textContent = picked.name;
+    foodReason.textContent = picked.reason;
+  }
+
+  filters.forEach((filter) => {
+    filter.addEventListener("click", () => {
+      currentCategory = filter.dataset.category || "all";
+      filters.forEach((button) => {
+        button.classList.toggle("active", button === filter);
+      });
+      renderMenu();
+    });
+  });
+
+  foodButton.addEventListener("click", renderMenu);
+}
+
 function setupPartnerForm() {
   if (!partnerForm || !partnerSubmit || !partnerStatus) return;
 
@@ -134,4 +211,5 @@ function setupPartnerForm() {
 setupLottoPage();
 setupActivityPage();
 setupStudyPage();
+setupFoodPage();
 setupPartnerForm();
