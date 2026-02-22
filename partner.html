@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>제휴 문의 | 오늘 점심 뭐 먹지?</title>
+  <meta name="description" content="점심추천 사이트 제휴 문의" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=SUIT:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <a class="partner-fab" href="/">점심추천</a>
+  <main class="app">
+    <header class="hero">
+      <p class="badge">PARTNERSHIP</p>
+      <h1>제휴 문의</h1>
+      <p class="subtitle">협업 제안을 남겨주시면 빠르게 확인 후 연락드리겠습니다.</p>
+    </header>
+
+    <section id="partner-section" class="card contact-card" aria-labelledby="partner-title">
+      <p class="label">제휴 문의</p>
+      <h2 id="partner-title" class="contact-title">협업 제안을 보내주세요</h2>
+      <form id="partner-form" action="https://formspree.io/f/mgolnppj" method="POST">
+        <div class="form-grid">
+          <label>
+            이름
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            이메일
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            회사명
+            <input type="text" name="company" required />
+          </label>
+          <label>
+            연락처
+            <input type="text" name="phone" />
+          </label>
+        </div>
+        <label>
+          문의 내용
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="[점심추천 사이트] 제휴 문의" />
+        <button id="partner-submit" type="submit">제휴문의 보내기</button>
+        <p id="partner-status" class="partner-status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <script defer type="text/javascript" src="/main.js"></script>
+</body>
+</html>

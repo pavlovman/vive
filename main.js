@@ -98,14 +98,16 @@ function renderPick() {
   menuName.classList.add("flash");
 }
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    setActiveFilter(button.dataset.category);
-    renderPick();
+if (pickButton) {
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      setActiveFilter(button.dataset.category);
+      renderPick();
+    });
   });
-});
 
-pickButton.addEventListener("click", renderPick);
+  pickButton.addEventListener("click", renderPick);
+}
 
 if (partnerForm && partnerSubmit && partnerStatus) {
   partnerForm.addEventListener("submit", async (event) => {

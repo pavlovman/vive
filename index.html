@@ -11,7 +11,7 @@
   <link href="/style.css" rel="stylesheet" />
 </head>
 <body>
-  <a class="partner-fab" href="#partner-section">제휴문의</a>
+  <a class="partner-fab" href="/partner.html">제휴문의</a>
   <main class="app">
     <header class="hero">
       <p class="badge">LUNCH PICKER</p>
@@ -31,38 +31,6 @@
       <h2 id="menu-name">버튼을 눌러 메뉴를 뽑아보세요</h2>
       <p id="menu-reason">든든하고 맛있는 점심을 골라드립니다.</p>
       <button id="pick-button" type="button">랜덤 추천 받기</button>
-    </section>
-
-    <section id="partner-section" class="card contact-card" aria-labelledby="partner-title">
-      <p class="label">제휴 문의</p>
-      <h2 id="partner-title" class="contact-title">협업 제안을 보내주세요</h2>
-      <form id="partner-form" action="https://formspree.io/f/mgolnppj" method="POST">
-        <div class="form-grid">
-          <label>
-            이름
-            <input type="text" name="name" required />
-          </label>
-          <label>
-            이메일
-            <input type="email" name="email" required />
-          </label>
-          <label>
-            회사명
-            <input type="text" name="company" required />
-          </label>
-          <label>
-            연락처
-            <input type="text" name="phone" />
-          </label>
-        </div>
-        <label>
-          문의 내용
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <input type="hidden" name="_subject" value="[점심추천 사이트] 제휴 문의" />
-        <button id="partner-submit" type="submit">제휴문의 보내기</button>
-        <p id="partner-status" class="partner-status" aria-live="polite"></p>
-      </form>
     </section>
 
     <p class="footnote">팁: 마음에 안 들면 한 번 더 눌러서 다시 뽑으세요.</p>
