@@ -50,7 +50,8 @@ body {
 h1 {
   margin: 0;
   line-height: 1.05;
-  font-family: "Black Han Sans", "SUIT", sans-serif;
+  font-family: "SUIT", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-weight: 700;
   font-size: clamp(2rem, 7vw, 3.8rem);
 }
 
