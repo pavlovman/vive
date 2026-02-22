@@ -70,6 +70,78 @@ h1 {
   padding: 26px;
 }
 
+.contact-card {
+  margin-top: 16px;
+}
+
+.contact-title {
+  margin: 10px 0 16px;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+}
+
+#partner-form {
+  display: grid;
+  gap: 12px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+#partner-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+#partner-form input,
+#partner-form textarea {
+  width: 100%;
+  border: 1px solid rgba(21, 34, 56, 0.22);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink);
+}
+
+#partner-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+#partner-submit {
+  border: 0;
+  border-radius: 14px;
+  padding: 13px 20px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(105deg, var(--accent-2), #0f9d79);
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  box-shadow: 0 10px 20px rgba(6, 167, 125, 0.25);
+}
+
+#partner-submit:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.05);
+}
+
+#partner-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.partner-status {
+  margin: 2px 0 0;
+  min-height: 1.2em;
+  font-size: 0.92rem;
+}
+
 .label {
   margin: 0;
   font-size: 13px;
@@ -185,6 +257,14 @@ h1 {
   }
 
   #pick-button {
+    width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #partner-submit {
     width: 100%;
   }
 }
