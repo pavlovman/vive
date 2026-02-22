@@ -79,6 +79,35 @@ h1 {
   opacity: 0.74;
 }
 
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+
+.filter-button {
+  border: 1px solid rgba(21, 34, 56, 0.2);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, background-color 120ms ease, color 120ms ease;
+}
+
+.filter-button:hover {
+  transform: translateY(-1px);
+}
+
+.filter-button.active {
+  background: linear-gradient(105deg, var(--accent), #f9505f);
+  color: #fff;
+  border-color: transparent;
+}
+
 #menu-name {
   margin: 10px 0;
   font-size: clamp(1.7rem, 4vw, 2.5rem);
