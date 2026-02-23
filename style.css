@@ -317,13 +317,40 @@ button:hover {
   gap: 8px;
 }
 
-.prediction-list div {
+.prediction-row {
   border-radius: 10px;
   border: 1px solid rgba(21, 34, 56, 0.18);
   background: rgba(255, 255, 255, 0.78);
   padding: 9px 10px;
+}
+
+.prediction-row.top {
+  border-color: rgba(255, 107, 53, 0.5);
+}
+
+.prediction-text {
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.prediction-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(21, 34, 56, 0.12);
+  overflow: hidden;
+}
+
+.prediction-fill {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, var(--accent), #f9505f);
+  transition: width 220ms ease;
+}
+
+.prediction-row.top .prediction-fill {
+  background: linear-gradient(105deg, var(--accent-2), #0f9d79);
 }
 
 @keyframes enter {

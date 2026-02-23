@@ -233,9 +233,30 @@ function setupAnimalFacePage() {
 
   function renderPrediction(prediction) {
     labelContainer.innerHTML = "";
-    prediction.forEach((item) => {
+    prediction.forEach((item, index) => {
+      const percent = Number((item.probability * 100).toFixed(1));
+
       const row = document.createElement("div");
-      row.textContent = `${item.className}: ${(item.probability * 100).toFixed(1)}%`;
+      row.className = "prediction-row";
+
+      const text = document.createElement("div");
+      text.className = "prediction-text";
+      text.textContent = `${item.className}: ${percent}%`;
+
+      const bar = document.createElement("div");
+      bar.className = "prediction-bar";
+
+      const fill = document.createElement("div");
+      fill.className = "prediction-fill";
+      fill.style.width = `${percent}%`;
+
+      if (index === 0) {
+        row.classList.add("top");
+      }
+
+      bar.appendChild(fill);
+      row.appendChild(text);
+      row.appendChild(bar);
       labelContainer.appendChild(row);
     });
   }
