@@ -142,6 +142,10 @@ h2 {
   margin: 0 0 16px;
 }
 
+.info-card {
+  margin-top: 16px;
+}
+
 button {
   border: 0;
   border-radius: 14px;
@@ -351,6 +355,30 @@ button:hover {
 
 .prediction-row.top .prediction-fill {
   background: linear-gradient(105deg, var(--accent-2), #0f9d79);
+}
+
+.site-footer {
+  width: min(760px, 100%);
+  margin-top: 16px;
+  padding: 14px 16px 22px;
+  color: rgba(21, 34, 56, 0.9);
+  font-size: 0.86rem;
+}
+
+.site-footer p {
+  margin: 0 0 8px;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(21, 34, 56, 0.25);
 }
 
 @keyframes enter {
