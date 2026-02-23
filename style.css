@@ -271,6 +271,61 @@ button:hover {
   font-size: 0.92rem;
 }
 
+.animal-status {
+  margin: 12px 0 14px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+#animal-file {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+#animal-predict {
+  margin-bottom: 0;
+}
+
+.preview-container {
+  width: 260px;
+  max-width: 100%;
+  min-height: 260px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(21, 34, 56, 0.2);
+  background: rgba(255, 255, 255, 0.75);
+  display: grid;
+  place-items: center;
+}
+
+.preview-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.preview-image:not([src]),
+.preview-image[src=""] {
+  display: none;
+}
+
+.prediction-list {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.prediction-list div {
+  border-radius: 10px;
+  border: 1px solid rgba(21, 34, 56, 0.18);
+  background: rgba(255, 255, 255, 0.78);
+  padding: 9px 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 @keyframes enter {
   from {
     opacity: 0;

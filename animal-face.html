@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>동물상 분석 | 랜덤 추천</title>
+  <meta name="description" content="Teachable Machine으로 동물상(강아지상/고양이상) 분석" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=SUIT:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
+</head>
+<body>
+  <nav class="top-nav" aria-label="추천 페이지 이동">
+    <a class="nav-link active" href="/animal-face.html">동물상 분석</a>
+    <a class="nav-link" href="/">로또 번호</a>
+    <a class="nav-link" href="/activity.html">오늘 할 일</a>
+    <a class="nav-link" href="/study.html">공부 주제</a>
+    <a class="nav-link" href="/lunch.html">음식 추천</a>
+  </nav>
+
+  <div class="action-fabs">
+    <a class="top-fab comments-fab" href="/comments.html">댓글</a>
+    <a class="top-fab partner-fab" href="/partner.html">제휴문의</a>
+  </div>
+
+  <main class="app">
+    <header class="hero">
+      <p class="badge">TEACHABLE MACHINE</p>
+      <h1>동물상 분석</h1>
+      <p class="subtitle">Start를 누르고 카메라를 허용하면 동물상 예측 결과가 실시간으로 표시됩니다.</p>
+    </header>
+
+    <section class="card" aria-live="polite">
+      <p class="label">사진 업로드 분석</p>
+      <input id="animal-file" type="file" accept="image/*" />
+      <button id="animal-predict" type="button">분석하기</button>
+      <p id="animal-status" class="animal-status">사진 파일을 올린 뒤 분석하기 버튼을 눌러주세요.</p>
+      <div id="preview-container" class="preview-container">
+        <img id="preview-image" class="preview-image" alt="업로드한 사진 미리보기" />
+      </div>
+      <div id="label-container" class="prediction-list"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <script defer type="text/javascript" src="/main.js"></script>
+</body>
+</html>

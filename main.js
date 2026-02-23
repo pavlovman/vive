@@ -208,8 +208,77 @@ function setupPartnerForm() {
   });
 }
 
+function setupAnimalFacePage() {
+  const fileInput = document.getElementById("animal-file");
+  const predictButton = document.getElementById("animal-predict");
+  const previewImage = document.getElementById("preview-image");
+  const labelContainer = document.getElementById("label-container");
+  const statusText = document.getElementById("animal-status");
+
+  if (!fileInput || !predictButton || !previewImage || !labelContainer || !statusText) return;
+
+  const MODEL_URL = "https://teachablemachine.withgoogle.com/models/PaJw4h9U7/";
+  let model;
+
+  async function loadModel() {
+    if (model) return model;
+    if (!window.tmImage) {
+      throw new Error("tmImage_not_loaded");
+    }
+    const modelURL = `${MODEL_URL}model.json`;
+    const metadataURL = `${MODEL_URL}metadata.json`;
+    model = await tmImage.load(modelURL, metadataURL);
+    return model;
+  }
+
+  function renderPrediction(prediction) {
+    labelContainer.innerHTML = "";
+    prediction.forEach((item) => {
+      const row = document.createElement("div");
+      row.textContent = `${item.className}: ${(item.probability * 100).toFixed(1)}%`;
+      labelContainer.appendChild(row);
+    });
+  }
+
+  async function predictUploadedImage() {
+    const file = fileInput.files && fileInput.files[0];
+    if (!file) {
+      statusText.textContent = "먼저 이미지 파일을 선택해 주세요.";
+      return;
+    }
+
+    predictButton.disabled = true;
+    statusText.textContent = "모델을 불러오고 분석 중입니다...";
+
+    try {
+      const loadedModel = await loadModel();
+      const prediction = await loadedModel.predict(previewImage);
+      prediction.sort((a, b) => b.probability - a.probability);
+      renderPrediction(prediction);
+      statusText.textContent = `분석 완료: ${prediction[0].className} 가능성이 가장 높습니다.`;
+    } catch (_error) {
+      statusText.textContent = "모델 라이브러리를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.";
+    } finally {
+      predictButton.disabled = false;
+    }
+  }
+
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files && fileInput.files[0];
+    if (!file) return;
+    const objectUrl = URL.createObjectURL(file);
+    previewImage.src = objectUrl;
+    previewImage.onload = () => URL.revokeObjectURL(objectUrl);
+    labelContainer.innerHTML = "";
+    statusText.textContent = "이미지 준비 완료. 분석하기 버튼을 눌러주세요.";
+  });
+
+  predictButton.addEventListener("click", predictUploadedImage);
+}
+
 setupLottoPage();
 setupActivityPage();
 setupStudyPage();
 setupFoodPage();
 setupPartnerForm();
+setupAnimalFacePage();
