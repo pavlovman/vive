@@ -11,4 +11,4 @@ Allow: /
 User-agent: Yeti
 Allow: /
 
-Sitemap: https://pavlovman.github.io/vive/sitemap.xml
+Sitemap: https://vive-6f4.pages.dev/sitemap.xml
