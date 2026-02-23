@@ -1,0 +1,23 @@
+{
+  "name": "랜덤 추천",
+  "short_name": "랜덤추천",
+  "start_url": "/vive/",
+  "scope": "/vive/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "lang": "ko-KR",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

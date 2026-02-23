@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
 
+# Explicitly allow major crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
 Sitemap: https://pavlovman.github.io/vive/sitemap.xml
