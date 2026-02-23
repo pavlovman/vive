@@ -58,11 +58,16 @@ body {
   color: #fff;
 }
 
-.partner-fab {
+.action-fabs {
   position: fixed;
   top: 16px;
   right: 16px;
   z-index: 30;
+  display: flex;
+  gap: 8px;
+}
+
+.top-fab {
   text-decoration: none;
   border-radius: 999px;
   border: 1px solid rgba(21, 34, 56, 0.2);
@@ -288,7 +293,7 @@ button:hover {
     gap: 6px;
   }
 
-  .partner-fab {
+  .action-fabs {
     top: 10px;
     right: 10px;
   }
