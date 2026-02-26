@@ -79,6 +79,68 @@ body {
   box-shadow: 0 8px 18px rgba(21, 34, 56, 0.14);
 }
 
+.share-widget {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 35;
+}
+
+.share-trigger {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  border-radius: 999px;
+  border: 1px solid rgba(21, 34, 56, 0.2);
+  background: linear-gradient(105deg, var(--accent-2), #0f9d79);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 11px 12px;
+  box-shadow: 0 10px 20px rgba(6, 167, 125, 0.24);
+  cursor: pointer;
+}
+
+.share-trigger:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.05);
+}
+
+.share-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  display: grid;
+  min-width: 144px;
+  padding: 6px;
+  border-radius: 14px;
+  border: 1px solid rgba(21, 34, 56, 0.14);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 32px rgba(21, 34, 56, 0.16);
+}
+
+.share-menu[hidden] {
+  display: none;
+}
+
+.share-link {
+  all: unset;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: left;
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.share-link:hover {
+  background: rgba(21, 34, 56, 0.08);
+}
+
 .app {
   width: min(760px, 100%);
   animation: enter 520ms ease-out both;
@@ -406,6 +468,21 @@ button:hover {
   .action-fabs {
     top: 10px;
     right: 10px;
+  }
+
+  .share-widget {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .share-trigger {
+    min-width: 98px;
+    padding: 10px 11px;
+  }
+
+  .share-trigger,
+  .share-link {
+    width: auto;
   }
 
   .card {

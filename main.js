@@ -6,6 +6,135 @@ function randomIndex(max) {
   return Math.floor(Math.random() * max);
 }
 
+function setupShareWidget() {
+  if (document.querySelector(".share-widget")) return;
+
+  const shareWidget = document.createElement("div");
+  shareWidget.className = "share-widget";
+
+  const shareTrigger = document.createElement("button");
+  shareTrigger.type = "button";
+  shareTrigger.className = "share-trigger";
+  shareTrigger.setAttribute("aria-haspopup", "true");
+  shareTrigger.setAttribute("aria-expanded", "false");
+  shareTrigger.textContent = "SNS 공유";
+
+  const shareMenu = document.createElement("div");
+  shareMenu.className = "share-menu";
+  shareMenu.hidden = true;
+
+  function buildSharePayload() {
+    const pageUrl = new URL(window.location.href);
+    pageUrl.searchParams.set("utm_source", "sns");
+    pageUrl.searchParams.set("utm_medium", "share");
+    pageUrl.searchParams.set("utm_campaign", "viral");
+
+    const title = document.querySelector("h1")?.textContent?.trim() || document.title;
+    const text = `${title} | 랜덤 추천 사이트`;
+    const url = pageUrl.toString();
+
+    return { title, text, url };
+  }
+
+  function openShareLink(getUrl) {
+    const payload = buildSharePayload();
+    window.open(getUrl(payload), "_blank", "noopener,noreferrer");
+  }
+
+  function closeShareMenu() {
+    shareMenu.hidden = true;
+    shareTrigger.setAttribute("aria-expanded", "false");
+  }
+
+  function addShareLink(label, getUrl) {
+    const link = document.createElement("button");
+    link.type = "button";
+    link.className = "share-link";
+    link.textContent = label;
+    link.addEventListener("click", () => {
+      openShareLink(getUrl);
+      closeShareMenu();
+    });
+    shareMenu.appendChild(link);
+  }
+
+  addShareLink("카카오스토리", (payload) => `https://story.kakao.com/share?url=${encodeURIComponent(payload.url)}`);
+  addShareLink("페이스북", (payload) => `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(payload.url)}`);
+  addShareLink(
+    "X (트위터)",
+    (payload) =>
+      `https://twitter.com/intent/tweet?url=${encodeURIComponent(payload.url)}&text=${encodeURIComponent(payload.text)}`
+  );
+  addShareLink("라인", (payload) => `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(payload.url)}`);
+
+  if (navigator.share) {
+    const nativeShare = document.createElement("button");
+    nativeShare.type = "button";
+    nativeShare.className = "share-link";
+    nativeShare.textContent = "기기 공유";
+    nativeShare.addEventListener("click", async () => {
+      const payload = buildSharePayload();
+      try {
+        await navigator.share(payload);
+      } catch (_error) {
+        // User canceled native share dialog.
+      } finally {
+        closeShareMenu();
+      }
+    });
+    shareMenu.appendChild(nativeShare);
+  }
+
+  const copyButton = document.createElement("button");
+  copyButton.type = "button";
+  copyButton.className = "share-link share-copy";
+  copyButton.textContent = "링크 복사";
+  copyButton.addEventListener("click", async () => {
+    const { url } = buildSharePayload();
+
+    try {
+      await navigator.clipboard.writeText(url);
+      copyButton.textContent = "복사 완료";
+    } catch (_error) {
+      const textarea = document.createElement("textarea");
+      textarea.value = url;
+      textarea.style.position = "fixed";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+      copyButton.textContent = "복사 완료";
+    }
+
+    setTimeout(() => {
+      copyButton.textContent = "링크 복사";
+    }, 1400);
+    closeShareMenu();
+  });
+  shareMenu.appendChild(copyButton);
+
+  shareTrigger.addEventListener("click", () => {
+    shareMenu.hidden = !shareMenu.hidden;
+    shareTrigger.setAttribute("aria-expanded", String(!shareMenu.hidden));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!shareWidget.contains(event.target)) {
+      closeShareMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeShareMenu();
+  });
+
+  shareWidget.appendChild(shareTrigger);
+  shareWidget.appendChild(shareMenu);
+  document.body.appendChild(shareWidget);
+}
+
 function setupLottoPage() {
   const lottoButton = document.getElementById("lotto-button");
   const lottoResult = document.getElementById("lotto-result");
@@ -303,3 +432,4 @@ setupStudyPage();
 setupFoodPage();
 setupPartnerForm();
 setupAnimalFacePage();
+setupShareWidget();
